@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./App.css";
 
 const Home = () => {
@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     const endInd = page * 10;
     const startInd = endInd - 10;
-    
+
     for (let index = startInd; index <= endInd; index++) {
       if (data.length > 0) {
         tempData.push(data[index]);
@@ -56,20 +56,31 @@ const Home = () => {
     }
   };
 
-  const deleteEmployeeHandler = async (_id) =>{
-    const data = await axios.delete(`https://mockrestapi.herokuapp.com/api/employee/${_id}`);
-    console.log("del data",data);
+  const deleteEmployeeHandler = async (_id) => {
+    const data = await axios.delete(
+      `https://mockrestapi.herokuapp.com/api/employee/${_id}`
+    );
+    console.log("del data", data);
     fetchData();
-  }
+  };
 
   return (
     <div>
-      <h1>List of employees</h1>
+      <h1>LIST</h1>
 
       {loading && <h1 className="loading">Loading ...</h1>}
 
       <Link to="/add">
-        <button>ADD</button>
+        <button
+          style={{
+            padding: "5px",
+            borderRadius: "10px",
+            margin: "5px",
+            backgroundColor: "green",
+          }}
+        >
+          ADD
+        </button>
       </Link>
       <table>
         <thead>
@@ -79,6 +90,7 @@ const Home = () => {
             <th>Email</th>
             <th>Phone</th>
             <th>Country</th>
+            <th>Action</th>
           </tr>
         </thead>
 
@@ -93,7 +105,17 @@ const Home = () => {
                   <td>{data.phone}</td>
                   <td>{data.country}</td>
                   <td>
-                    <button onClick={() => deleteEmployeeHandler(data._id)}>DELETE</button>
+                    <button
+                      style={{
+                        padding: "5px",
+                        borderRadius: "10px",
+                        margin: "5px",
+                        backgroundColor: "red",
+                      }}
+                      onClick={() => deleteEmployeeHandler(data._id)}
+                    >
+                      DELETE
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -103,8 +125,8 @@ const Home = () => {
       </table>
 
       <div>
-        <button onClick={() => pageChangeHandler("prev")}>previous</button>
-        <button onClick={() => pageChangeHandler("next")}>next</button>
+        <button style={{padding:"5px", borderRadius:"10px", margin:"5px"}} onClick={() => pageChangeHandler("prev")}>previous</button>
+        <button style={{padding:"5px", borderRadius:"10px", margin:"5px"}} onClick={() => pageChangeHandler("next")}>next</button>
       </div>
     </div>
   );

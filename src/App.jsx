@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import Add from "./Add";
 import "./App.css";
 import Home from "./Home";
@@ -7,17 +6,7 @@ import Home from "./Home";
 function App() {
   
 
-  // const content = datas.map((data) => (
-  //   <tr>
-  //     <td>{data._id}</td>
-  //     <td>{data.name}</td>
-  //     <td>{data.email}</td>
-  //     <td>{data.phone}</td>
-  //     <td>{data.country}</td>
-  //   </tr>
-  // ));
-
-  return (
+   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
